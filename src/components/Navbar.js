@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import {
     AppBar,
     FormControl,
+    IconButton,
     InputBase,
     makeStyles,
     MenuItem,
@@ -11,7 +12,8 @@ import {
     Typography,
 } from '@material-ui/core';
 import SearchIcon from "@material-ui/icons/Search";
-import RoomIcon from '@material-ui/icons/Room';
+import RoomIcon from "@material-ui/icons/Room";
+import AccountCircle from "@material-ui/icons/AccountCircle";
 // import { fade } from "@material-ui/core/styles";
 
 const useStyle = makeStyles(
@@ -89,6 +91,10 @@ const useStyle = makeStyles(
             padding: theme.spacing(1, 1, 1, 4),
             color: theme.palette.common.white
         },
+
+        accountInfo: {
+            marginLeft: theme.spacing(1)
+        }
     })
 );
 
@@ -150,6 +156,17 @@ export default function Navbar() {
                             </Select>
                         </FormControl>
                     </div>
+
+                    <IconButton
+                        aria-label="account of current user"
+                        aria-controls="menu-appbar"
+                        aria-haspopup="true"
+                        // onClick={handleMenu}
+                        color="inherit"
+                        className={classes.accountInfo}
+                    >
+                        <AccountCircle />
+                    </IconButton>
                 </Toolbar>
             </AppBar>
         </div>
