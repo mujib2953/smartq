@@ -11,6 +11,7 @@ import {
 import Location from "./Location";
 import NavSearch from "./NavSearch";
 import NavUserInfo from "./NavUserInfo";
+import Login from "./Login";
 
 const useStyle = makeStyles(
     theme => ({
@@ -58,6 +59,9 @@ export default function Navbar() {
 
                     {/* User information */}
                     <NavUserInfo />
+
+                    {/* Login */}
+                    <Login />
                 </Toolbar>
             </AppBar>
         </div>
