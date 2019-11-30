@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
     AppBar,
-    Button,
-    Box,
+    FormControl,
     InputBase,
     makeStyles,
+    MenuItem,
+    Select,
     Toolbar,
     Typography,
 } from '@material-ui/core';
-import MenuIcon from "@material-ui/icons/Menu"
 import SearchIcon from "@material-ui/icons/Search";
-import { fade } from "@material-ui/core/styles";
+import RoomIcon from '@material-ui/icons/Room';
+// import { fade } from "@material-ui/core/styles";
 
 const useStyle = makeStyles(
     theme => ({
@@ -64,12 +65,41 @@ const useStyle = makeStyles(
             transition: theme.transitions.create("width"),
             width: "100%",
         },
+
+        // --- location filter
+        location: {
+            position: "relative",
+            width: theme.spacing(30),
+        },
+        locationIcon: {
+            minWidth: theme.spacing(7),
+            height: "100%",
+
+            position: "absolute",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+
+            pointerEvents: "none",
+        },
+        formControl: {
+            width: "100%",
+        },
+        selectInput: {
+            padding: theme.spacing(1, 1, 1, 4),
+            color: theme.palette.common.white
+        },
     })
 );
 
 export default function Navbar() {
 
     const classes = useStyle();
+    const [location, setLocation] = useState("Embassy Golf Links");
+
+    const handleChange = event => {
+        setLocation(event.target.value);
+    }
 
     return (
         <div className={classes.root}>
@@ -94,7 +124,32 @@ export default function Navbar() {
                             inputProps={{ 'aria-label': 'search' }}
                         />
                     </div>
-                    <div className={classes.grow} />
+
+                    {/* Location filter */}
+                    <div className={classes.location}>
+                        <div className={classes.locationIcon}>
+                            <RoomIcon />
+                        </div>
+                        <FormControl className={classes.formControl}>
+                            {/* <InputLabel id="demo-simple-select-label">Age</InputLabel> */}
+                            <Select
+                                // labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={location}
+                                onChange={handleChange}
+                                classes={{
+                                    root: classes.inputRoot,
+                                    select: classes.selectInput,
+                                }}
+                            >
+                                <MenuItem value={"Embassy Golf Links"}>Embassy Golf Links</MenuItem>
+                                <MenuItem value={"Mumbai"}>Mumbai</MenuItem>
+                                <MenuItem value={"Delhi"}>Delhi</MenuItem>
+                                <MenuItem value={"Kolkata"}>Kolkata</MenuItem>
+                                <MenuItem value={"Chennai"}>Chennai</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </div>
                 </Toolbar>
             </AppBar>
         </div>
